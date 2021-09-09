@@ -1,54 +1,56 @@
+import 'package:cookbook/screens/home/categoryrecipes.dart';
 import 'package:flutter/material.dart';
+import 'package:cookbook/models/categories.dart';
 
 
 class Categories extends StatefulWidget {
+
+  final List<CategoryClass> categories;
+
+  Categories(this.categories);
+
   @override
   _CategoriesState createState() => _CategoriesState();
 }
 
 class _CategoriesState extends State<Categories> {
-  List<String> categories = ["All", "Indian", "Italian", "Mexican", "Chinese"];
-
-  // By default first one is selected
-  int selectedIndex = 0;
+  
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: MediaQuery.of(context).size.height*0.15,
+        height: 130,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           physics: BouncingScrollPhysics(),
-          itemCount: categories.length,
-          itemBuilder: (context, index) => buildCategoryItem(index),
-        ),
-      );
-  }
-
-  Widget buildCategoryItem(int index) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          selectedIndex = index;
-        });
-      },
-      child: Container(
-        width: MediaQuery.of(context).size.width*0.3,
-        alignment: Alignment.center,
-        padding: EdgeInsets.symmetric(vertical:0.0, horizontal: 20.0) ,
-        margin: EdgeInsets.symmetric(vertical:10.0,horizontal:7.0),
-        decoration: BoxDecoration(
-            color:
-            selectedIndex == index ? Colors.redAccent : Colors.white,
-            borderRadius: BorderRadius.circular(20)),
-        child: Text(
-          categories[index],
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: selectedIndex == index ? Colors.white : Colors.redAccent,
-          ),
-        ),
-      ),
+          itemCount: widget.categories.length,
+          itemBuilder: (context, index) => 
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>CategoryRecipes(widget.categories[index])));        
+              },
+              child: Container(       
+                width: 120,        
+                alignment: Alignment.center,        
+                margin: EdgeInsets.symmetric(vertical:0,horizontal:5.0),
+                decoration: BoxDecoration(
+                    color:Colors.white,
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: NetworkImage("${widget.categories[index].imageUrl}"),
+                      fit: BoxFit.cover
+                    )
+                ),
+                child: Text(
+                  "${widget.categories[index].name}",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white
+                  ),
+                ),
+              ),
+            ),
+         ),
     );
   }
 }

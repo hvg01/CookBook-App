@@ -14,13 +14,22 @@ class Favourites extends StatefulWidget {
 
 class _FavouritesState extends State<Favourites> {
   final CollectionReference refToRecipes= FirebaseFirestore.instance.collection('recipes');
+  // ignore: unused_field
   final AuthService _auth= AuthService();
 
   @override
   Widget build(BuildContext context) {
     return FirebaseAuth.instance.currentUser.isAnonymous?
-    SafeArea(
-      child: DefaultMessageForAnonUsers(message: "Sign in to see your Favourites!",)
+    Scaffold(
+      appBar: AppBar(
+        elevation:0,
+        backgroundColor: Colors.transparent,
+        iconTheme: IconThemeData(color: Colors.black),
+      
+      ),
+      body: SafeArea(
+        child: DefaultMessageForAnonUsers(message: "Sign in to see your Favourites!",)
+      ),
     ):
     Scaffold(
       backgroundColor: Colors.grey[100],
@@ -33,17 +42,14 @@ class _FavouritesState extends State<Favourites> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: StreamBuilder(
-            stream: refToRecipes.snapshots(),
-            builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              return ListView.builder(
+        child: ListView.builder(
                 physics: BouncingScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: 2,
                 itemBuilder: (_,index) {
                   return InkWell(
                     onTap: (){},
-                    child: RecipeTile(
+                    child: RecipeTile1(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -72,9 +78,7 @@ class _FavouritesState extends State<Favourites> {
                     ),
                   );
                 },
-              );
-            }
-        ),
+              )
       ),
     );
   }

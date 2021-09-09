@@ -19,14 +19,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamProvider<Users>.value(
       value: AuthService().user,
+      initialData: null,
       child: MaterialApp(
+        title: 'CookBook',
         theme: ThemeData(
           visualDensity: VisualDensity.adaptivePlatformDensity,
           textTheme: GoogleFonts.montserratTextTheme(),
         ),
-        debugShowCheckedModeBanner: false,
-        home: Wrapper(),
-
+        debugShowCheckedModeBanner: false,        
+        routes: {"/": (context) => Wrapper()},
+        initialRoute: "/",
       ),
     );
   }
