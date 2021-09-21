@@ -39,7 +39,7 @@ class RecipesList{
 
     for (var i in snapshot){
       _temp.add(Recipe(
-      name: i['details']['name'] as String,
+       name: i['details']['name'] as String,
        cuisine: computeCuisine(i['tags']),
        imageUrl: i['details']['images'][0]['hostedLargeUrl'] as String,
        steps: computeSteps(i['preparationSteps'],i['preparationStepCount']),

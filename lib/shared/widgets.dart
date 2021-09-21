@@ -1,6 +1,6 @@
 import 'package:cookbook/screens/wrapper.dart';
+import 'package:cookbook/services/auth.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 
 
@@ -15,6 +15,8 @@ class DefaultMessageForAnonUsers extends StatefulWidget {
 }
 
 class _DefaultMessageForAnonUsersState extends State<DefaultMessageForAnonUsers> {
+
+    final AuthService _auth= AuthService();
   
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class _DefaultMessageForAnonUsersState extends State<DefaultMessageForAnonUsers>
               Text('Click here to'),
               TextButton(
                 onPressed: ()async {                
-                FirebaseAuth.instance.currentUser.delete();
+                _auth.deleteUser();
                 Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => Wrapper()), ModalRoute.withName("/"));
                 }, 
                 child: Text(
@@ -201,17 +203,16 @@ class SubHeadding extends StatelessWidget {
   }
 }
 
-// ignore: must_be_immutable
+
 class StarRating extends StatelessWidget {
   final stars;
-  double size=24;
-  StarRating({this.stars, this.size});
+  final double size;
+  StarRating({this.stars, this.size=24});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Row(
-        
+      child: Row(        
         children: [
           Stack(
             children: [

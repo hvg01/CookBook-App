@@ -1,7 +1,11 @@
 import 'package:cookbook/models/recipe.dart';
+import 'package:cookbook/models/users.dart';
+import 'package:cookbook/services/auth.dart';
+import 'package:cookbook/services/database.dart';
 import 'package:cookbook/shared/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class DetailsPage extends StatefulWidget {
 
@@ -15,16 +19,28 @@ class DetailsPage extends StatefulWidget {
 
 class _DetailsPageState extends State<DetailsPage> {
   
+  bool favMarked = false;
+  AuthService _auth = new  AuthService();
 
-  // var ingredientsList= [
-  //   '1 tablespoon unsalted butter', 
-  //   '1/4 teaspoon kosher salt', 
-  //   '1 bunch of fresh mint leaves',
-  //   '1/2 teaspoon lemon juice',    
-  //   ];
-      
+  updateFavMarker() async {
+    bool isMarked = await DatabaseService(_auth.userUid()).isRecipeInFavourites(widget.recipe.recipeId);  
+    setState(() {
+      favMarked = isMarked;
+    });
+    } 
+  
+  @override
+  void initState() {
+    super.initState();
+
+    updateFavMarker();
+  }
+        
   @override
   Widget build(BuildContext context) {
+
+    final user= Provider.of<Users>(context);     
+    
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -37,11 +53,27 @@ class _DetailsPageState extends State<DetailsPage> {
             children: [
               IconButton(
                 icon: Icon(
-                  Icons.favorite_outline_rounded,
-                  color: Colors.black,
+                  favMarked? Icons.favorite_rounded : Icons.favorite_outline_rounded,
+                  color: favMarked? Colors.redAccent: Colors.black,
                 ),
-                onPressed: (){},
-              ),
+                onPressed: () {
+                    if (favMarked == true){
+                      setState(() {
+                        favMarked = !favMarked;
+                      });  
+                      DatabaseService(user.uid).deleteFromFavourites(widget.recipe); 
+                                                                      
+                    }
+                    else{
+                      setState(() {
+                        favMarked = !favMarked;
+                      });
+                      DatabaseService(user.uid).addToFavourites(widget.recipe);
+                      
+                    }
+                  
+                },
+              ),              
               SizedBox(width: 10,)
             ],
           )

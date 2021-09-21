@@ -22,6 +22,7 @@ class _RegisterState extends State<Register> {
   //text field state
   String name='';
   String email='';
+  String phone='';
   String password='';
   String error='';
 
@@ -77,6 +78,20 @@ class _RegisterState extends State<Register> {
                         SizedBox(height: 20,),
                         InputContainer(
                           child: TextFormField(
+                            validator: (val)=>val.length<10? 'Enter a valid phone number' : null,
+                            cursorColor: Colors.redAccent,
+                            decoration: textInputDecoration.copyWith(
+                            icon: Icon(Icons.phone_outlined, color: Colors.redAccent),
+                            hintText: 'Phone'
+                            ),
+                            onChanged: (val) {
+                              setState(()=> phone=val);
+                            },
+                          ),
+                        ),                        
+                        SizedBox(height: 20,),
+                        InputContainer(
+                          child: TextFormField(
                             validator: (val)=>val.length<8? 'Minimum 8 characters' : null,
                             obscureText: true,
                             cursorColor: Colors.redAccent,
@@ -89,7 +104,7 @@ class _RegisterState extends State<Register> {
                             },
                           ),
                         ),
-                        SizedBox(height: 20,),
+                        SizedBox(height: 20,),                        
                         Container(
                           width: MediaQuery.of(context).size.width*0.8,
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), color: Colors.redAccent),
@@ -100,7 +115,7 @@ class _RegisterState extends State<Register> {
                               onPressed: () async {
                                 if(_formKey.currentState.validate()){
                                     setState(()=>loading=true);
-                                    dynamic result= await _auth.registerWithEmailAndPassword(email, password);
+                                    dynamic result= await _auth.registerWithEmailAndPassword(name, email, phone, password);
                                   if (result==null) {
                                     setState(() async {
                                       loading=false;
@@ -130,15 +145,15 @@ class _RegisterState extends State<Register> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 20,),
-                        TextButton.icon(
-                          icon: Text("Skip Login", style: TextStyle(color: Colors.black),),
-                          label: Icon(Icons.arrow_forward, color: Colors.redAccent,),
-                          onPressed: ()async{
-                            setState(()=>loading=true);
-                            await _auth.signInAnon();
-                          },
-                        )
+                        // SizedBox(height: 20,),
+                        // TextButton.icon(
+                        //   icon: Text("Skip Login", style: TextStyle(color: Colors.black),),
+                        //   label: Icon(Icons.arrow_forward, color: Colors.redAccent,),
+                        //   onPressed: ()async{
+                        //     setState(()=>loading=true);
+                        //     await _auth.signInAnon();
+                        //   },
+                        // )
                       ],
                     ),
                   ),

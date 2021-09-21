@@ -21,8 +21,9 @@ class MyApp extends StatelessWidget {
       value: AuthService().user,
       initialData: null,
       child: MaterialApp(
-        title: 'CookBook',
+        title: 'CookBook',        
         theme: ThemeData(
+          accentColor: Colors.grey,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           textTheme: GoogleFonts.montserratTextTheme(),
         ),

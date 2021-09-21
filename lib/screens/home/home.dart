@@ -1,4 +1,3 @@
-// ignore: unused_import
 import 'package:cookbook/models/categories.dart';
 import 'package:cookbook/screens/home/detailpage.dart';
 import 'package:cookbook/screens/home/favourites.dart';
@@ -8,13 +7,8 @@ import 'package:cookbook/services/api/categories.dart';
 import 'package:cookbook/services/api/recipes.dart';
 import 'package:cookbook/services/auth.dart';
 import 'package:cookbook/shared/widgets.dart';
-// ignore: unused_import
-import 'package:favorite_button/favorite_button.dart';
-// ignore: unused_import
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/rendering.dart';
 import 'package:shimmer/shimmer.dart';
-// ignore: unused_import
 import 'categories.dart';
 import 'package:cookbook/screens/home/recipetiles.dart';
 import 'package:flutter/material.dart';
@@ -484,8 +478,8 @@ class _HomeState extends State<Home> {
                           icon: Icons.logout_rounded,
                           text: "Logout",
                           onPressed: () async {
-                            FirebaseAuth.instance.currentUser.isAnonymous?
-                            FirebaseAuth.instance.currentUser.delete()
+                            _auth.isAnon()?
+                              await _auth.deleteUser()
                             : await _auth.signOut();
                           },                  
                         ),                               
