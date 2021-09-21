@@ -61,17 +61,14 @@ class _DetailsPageState extends State<DetailsPage> {
                       setState(() {
                         favMarked = !favMarked;
                       });  
-                      DatabaseService(user.uid).deleteFromFavourites(widget.recipe); 
-                                                                      
+                      DatabaseService(user.uid).deleteFromFavourites(widget.recipe);                                                                       
                     }
                     else{
                       setState(() {
                         favMarked = !favMarked;
                       });
-                      DatabaseService(user.uid).addToFavourites(widget.recipe);
-                      
-                    }
-                  
+                      DatabaseService(user.uid).addToFavourites(widget.recipe);                      
+                    }                  
                 },
               ),              
               SizedBox(width: 10,)

@@ -90,10 +90,10 @@ class _DrawerItemState extends State<DrawerItem> {
         style: ButtonStyle(
           shape: MaterialStateProperty.all(RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(100),
-            side: BorderSide(color: Colors.black),            
+            side: BorderSide(color: Colors.black),                        
+            ),
           ),
-          ),
-          
+          overlayColor: MaterialStateProperty.all(Colors.grey[200])
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,

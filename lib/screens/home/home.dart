@@ -491,21 +491,22 @@ class _HomeState extends State<Home> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children:[
-                        Text("Harsh Goyal", style: TextStyle(color: Colors.grey)),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            TextButton(
-                              onPressed: (){},
-                              child: Text("Contribute", style: TextStyle( color: Colors.grey,)),                                                    
-                            ),
-                            Text("•", style: TextStyle(color: Colors.grey),),
-                            TextButton(
-                              onPressed: (){},
-                              child: Text("Connect", style: TextStyle( color: Colors.grey,)),                                                    
-                            ),
-                          ],
-                        )
+                        Text("Version 1.0.0.1", style: TextStyle(color: Colors.grey)),
+                        // Text("Harsh Goyal", style: TextStyle(color: Colors.grey)),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.center,
+                        //   children: [
+                        //     TextButton(
+                        //       onPressed: (){},
+                        //       child: Text("Contribute", style: TextStyle( color: Colors.grey,)),                                                    
+                        //     ),
+                        //     Text("•", style: TextStyle(color: Colors.grey),),
+                        //     TextButton(
+                        //       onPressed: (){},
+                        //       child: Text("Connect", style: TextStyle( color: Colors.grey,)),                                                    
+                        //     ),
+                        //   ],
+                        // ),
                       ],                   
             
                     ),
@@ -686,9 +687,7 @@ class RecommendedRecipesLoadingPlaceholder extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: Colors.grey,
                               borderRadius: BorderRadius.circular(100)                                      
-                            ),
-
-                                            
+                            ),                                            
                           ),
                         ),
                         SizedBox(height: 10,),
