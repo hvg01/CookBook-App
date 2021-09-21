@@ -22,12 +22,8 @@ class MyApp extends StatelessWidget {
       initialData: null,
       child: MaterialApp(
         title: 'CookBook',                
-        theme: ThemeData(
-          primaryColor: Colors.grey,
-          accentColor: Colors.grey,
-          buttonTheme: ButtonThemeData(
-            buttonColor: Colors.grey
-          ),
+        theme: ThemeData(          
+          accentColor: Colors.grey,          
           visualDensity: VisualDensity.adaptivePlatformDensity,
           textTheme: GoogleFonts.montserratTextTheme(),
         ),
