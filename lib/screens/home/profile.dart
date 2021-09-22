@@ -4,6 +4,7 @@ import 'package:cookbook/shared/loading.dart';
 import 'package:cookbook/shared/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:cookbook/services/auth.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class Profile extends StatefulWidget {
@@ -35,9 +36,14 @@ class _ProfileState extends State<Profile> {
     ):
     Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.grey[100],
         elevation: 0,
-        backgroundColor: Colors.transparent,
-        iconTheme: IconThemeData(color: Colors.black),        
+        textTheme: GoogleFonts.montserratTextTheme(),
+        title: Text("My Account", style: TextStyle(fontSize: 20),),               
+        toolbarHeight: 100.0,
+        centerTitle: false,
+        automaticallyImplyLeading: false,
+        leading: BackButton(color: Colors.black)
       ),
       backgroundColor: Colors.grey[100],
       
@@ -53,7 +59,7 @@ class _ProfileState extends State<Profile> {
                   children: [
                     Center(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20),                                
+                        padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),                                
                         child: Container(
                           height: 175,
                           width: 175,
@@ -68,15 +74,14 @@ class _ProfileState extends State<Profile> {
                           ),
                         ),
                       ),
-                    ),
-                    
+                    ),                    
                     ProfilePageListTile(placeholder: "Name", value: "${snapshot.data.name}",),
                     ProfilePageListTile(placeholder: "Email", value: "${snapshot.data.email}",),
                     ProfilePageListTile(placeholder: "Phone",value:"${snapshot.data.phone}",),
                     Container(
                       height: 50,
                       width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.fromLTRB(25, 55, 25, 10), 
+                      margin: EdgeInsets.fromLTRB(25, 45, 25, 5), 
                       padding: EdgeInsets.symmetric(horizontal: 20),                 
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
@@ -92,9 +97,18 @@ class _ProfileState extends State<Profile> {
                           )
                         ],
                       ),
-                      ),
-                      
-            
+                    ),
+                    Center(
+                      child: TextButton(
+                        onPressed: () async {
+                            _auth.isAnon()?
+                              await _auth.deleteUser()
+                            : await _auth.signOut();
+                          },  
+                        child: Text("Logout", style: TextStyle(color: Colors.grey[600]),),
+                        style: ButtonStyle(overlayColor: MaterialStateProperty.all(Colors.grey[200])),
+                      )
+                    )  
                   ],
                 )
                :Column(

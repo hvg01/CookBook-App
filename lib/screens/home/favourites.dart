@@ -45,10 +45,11 @@ class _FavouritesState extends State<Favourites> {
         backgroundColor: Colors.grey[100],
         elevation: 0,
         textTheme: GoogleFonts.montserratTextTheme(),
-        title: Text("   Favourite Recipes", style: TextStyle(fontSize: 24),),               
-        toolbarHeight: 100.0,
+        title: Text("Favourite Recipes", style: TextStyle(fontSize: 20),),               
+        toolbarHeight: 100.0,        
         centerTitle: false,
         automaticallyImplyLeading: false,
+        leading: BackButton(color: Colors.black)
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),

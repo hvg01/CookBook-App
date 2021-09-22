@@ -3,6 +3,7 @@ import 'package:cookbook/shared/constants.dart';
 import 'package:cookbook/shared/loading.dart';
 import 'package:cookbook/shared/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'detailpage.dart';
 
@@ -46,10 +47,14 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
+        backgroundColor: Colors.grey[100],
         elevation: 0,
-        backgroundColor: Colors.transparent,
-        leading: BackButton(color: Colors.black,),
-        toolbarHeight: 80,
+        textTheme: GoogleFonts.montserratTextTheme(),
+        title: Text("Search Recipes", style: TextStyle(fontSize: 20),),               
+        toolbarHeight: 100.0,
+        centerTitle: false,
+        automaticallyImplyLeading: false,
+        leading: BackButton(color: Colors.black)
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -141,24 +146,15 @@ class _SearchPageState extends State<SearchPage> {
               isLoading?
                 Loading()
                 :SizedBox(),
-              searchResult(found)
-
-      
-              
-                
-      
-      
-                           
+              searchResult(found)                           
             ]
           ),
-      ),
-      
+      ),      
     );
-
   }
 
   Widget searchResult(bool found){
-    if (found == true){
+    if (found){
       return Container(
         color: Colors.grey[100],
         child: ListView.builder(
@@ -230,11 +226,8 @@ class _SearchPageState extends State<SearchPage> {
                                 ),
                                 ],
                               ),
-                                                            
-                                                                                  
-                              
                               ],
-                              ),
+                            ),
                           ),
                         ),
                       ],
