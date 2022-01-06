@@ -39,7 +39,7 @@ class _ProfileState extends State<Profile> {
         backgroundColor: Colors.grey[100],
         elevation: 0,
         textTheme: GoogleFonts.montserratTextTheme(),
-        title: Text("My Account", style: TextStyle(fontSize: 20),),               
+        title: Text("My Account", style: TextStyle(fontSize: 20, color: Colors.black,),),               
         toolbarHeight: 100.0,
         centerTitle: false,
         automaticallyImplyLeading: false,

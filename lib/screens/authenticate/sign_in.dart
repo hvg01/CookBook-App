@@ -2,7 +2,6 @@ import 'package:cookbook/services/auth.dart';
 import 'package:cookbook/shared/constants.dart';
 import 'package:cookbook/shared/loading.dart';
 import 'package:cookbook/shared/widgets.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {

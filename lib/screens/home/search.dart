@@ -50,7 +50,7 @@ class _SearchPageState extends State<SearchPage> {
         backgroundColor: Colors.grey[100],
         elevation: 0,
         textTheme: GoogleFonts.montserratTextTheme(),
-        title: Text("Search Recipes", style: TextStyle(fontSize: 20),),               
+        title: Text("Search Recipes", style: TextStyle(fontSize: 20, color: Colors.black,),),               
         toolbarHeight: 100.0,
         centerTitle: false,
         automaticallyImplyLeading: false,

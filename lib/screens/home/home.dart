@@ -66,7 +66,7 @@ class _HomeState extends State<Home> {
         
         title: Text(
           "Explore!", 
-          style: TextStyle(fontSize: 30),
+          style: TextStyle(fontSize: 30, color: Colors.black,),          
           ),
         toolbarHeight: 80.0,
         actions: [

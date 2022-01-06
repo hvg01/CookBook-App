@@ -45,7 +45,7 @@ class _FavouritesState extends State<Favourites> {
         backgroundColor: Colors.grey[100],
         elevation: 0,
         textTheme: GoogleFonts.montserratTextTheme(),
-        title: Text("Favourite Recipes", style: TextStyle(fontSize: 20),),               
+        title: Text("Favourite Recipes", style: TextStyle(fontSize: 20, color: Colors.black,),),               
         toolbarHeight: 100.0,        
         centerTitle: false,
         automaticallyImplyLeading: false,
